@@ -1,0 +1,38 @@
+name: supro_vigilant
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  firebase_auth:
+  firebase_core:
+  firebase_storage:
+  cloud_firestore:
+  provider:
+  font_awesome_flutter:
+  shared_preferences:
+  shimmer:
+  share_plus:
+  lottie:
+  intl:
+  image_picker:
+  cached_network_image:
+  path:
+  popover:
+  get:
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+flutter:
+  uses-material-design: true
