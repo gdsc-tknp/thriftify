@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1046716731026",
+    "project_id": "supro-vigilant",
+    "storage_bucket": "supro-vigilant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046716731026:android:c537f4e3f8bca775b1604b",
+        "android_client_info": {
+          "package_name": "com.gdsctknp.supro_vigilant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046716731026-oek96vd2b671b380fd00oodibq14stea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGt29en4Lsr9qDX-HlNWt5NQG-6Ekwujg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046716731026-oek96vd2b671b380fd00oodibq14stea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
