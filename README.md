@@ -1,7 +1,8 @@
-# supro_vigilant
+# Supro Vigilant
 
-A new Flutter project.
+Resource-efficient production and consumption.
 
+- A mobile applications that is capable of promoting transition of circular economy where waste is minimized and resources are used in a sustainable way.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
