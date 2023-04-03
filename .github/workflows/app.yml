@@ -1,5 +1,8 @@
 name: Build SV
-on: push
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: macos-latest
