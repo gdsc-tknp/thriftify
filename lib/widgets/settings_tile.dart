@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,13 +12,11 @@ class SettingsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: FaIcon(iconL),
-        title: Text(title!),
-        trailing: FaIcon(icon),
-        onTap: onTap,
-      ),
+    return ListTile(
+      leading: FaIcon(iconL),
+      title: Text(title!),
+      trailing: FaIcon(icon),
+      onTap: onTap,
     );
   }
 }
@@ -38,6 +37,30 @@ class SettingsTitle extends StatelessWidget {
             .labelLarge!
             .copyWith(fontSize: 18, fontWeight: FontWeight.w300),
       ),
+    );
+  }
+}
+
+class SettingsButton extends StatelessWidget {
+  final String? title;
+  final String? subtitle;
+  final bool? value;
+  final ValueChanged<bool>? onChanged;
+
+  const SettingsButton({
+    Key? key,
+    @required this.title,
+    @required this.subtitle,
+    @required this.value,
+    @required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title!),
+      subtitle: Text(subtitle!),
+      trailing: CupertinoSwitch(value: value!, onChanged: onChanged),
     );
   }
 }
