@@ -38,3 +38,34 @@ ThemeData theme = ThemeData(
   fontFamily: 'Poppins',
   useMaterial3: true,
 );
+ThemeData themed = ThemeData(
+  primaryColorDark: d1,
+  // backgroundColor: r3,
+  scaffoldBackgroundColor: d1,
+  cardTheme: CardTheme(
+    clipBehavior: Clip.antiAlias,
+    color: d0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  ),
+  appBarTheme: const AppBarTheme(
+    // elevation: 1,
+    scrolledUnderElevation: 0,
+    centerTitle: true,
+    toolbarHeight: 80,
+    titleTextStyle: TextStyle(
+      fontWeight: FontWeight.w400,
+      fontFamily: 'Poppins',
+      color: Colors.black,
+      fontSize: 18,
+    ),
+    color: d0,
+  ),
+  fontFamily: 'Poppins',
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.teal,
+    accentColor: r5,
+  ).copyWith(
+    secondary: d0,
+  ),
+);
