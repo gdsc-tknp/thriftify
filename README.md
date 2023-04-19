@@ -2,7 +2,7 @@
 
 Resource-efficient production and consumption.
 
-- A mobile applications that is capable of promoting transition of circular economy where waste is minimized and resources are used in a sustainable way.
+- A mobile application capable of promoting the transition of a circular economy where waste is minimized and resources are used sustainably.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
