@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,7 +14,10 @@ import 'package:supro_vigilant/ui/resale_page.dart';
 import 'package:supro_vigilant/ui/setting_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+  final User _user;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,6 +25,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String? pickImage;
+  late User _user;
+
+  @override
+  void initState() {
+    _user = widget._user;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 text: 'Settings',
                 onTap: () {
                   Get.back();
-                  Get.to(() => const SettingsPage());
+                  Get.to(() => SettingsPage(user: _user));
                 },
                 icon: FontAwesomeIcons.gear,
               ),
@@ -72,18 +84,18 @@ class _HomePageState extends State<HomePage> {
           vertical: 8.0,
         ),
         children: [
-          Image.asset('assets/images/logo.png'),
+          Image.asset('assets/images/logo.png', height: 160),
           Column(
             children: [
               Text(
-                '{User_Name}',
+                _user.displayName!,
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.8),
               ),
               Text(
-                '{User_email}',
+                _user.email!,
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
@@ -199,7 +211,11 @@ class MItems extends StatelessWidget {
         constraints: BoxConstraints(minHeight: height / 12),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
-          children: [FaIcon(icon), const SizedBox(width: 5), Text(text!)],
+          children: [
+            FaIcon(icon, color: Theme.of(context).primaryColor),
+            const SizedBox(width: 5),
+            Text(text!)
+          ],
         ),
       ),
     );
