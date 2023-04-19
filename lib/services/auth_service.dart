@@ -15,7 +15,7 @@ class AuthService extends ChangeNotifier {
     );
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Get.offAll(() => const HomePage());
+      Get.offAll(() => HomePage(user: user));
     }
     return firebaseApp;
   }
@@ -25,7 +25,8 @@ class AuthService extends ChangeNotifier {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {Get.offAll(() => const HomePage())});
+          .then(
+              (value) => {Get.offAll(() => HomePage(user: auth.currentUser!))});
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
@@ -36,29 +37,26 @@ class AuthService extends ChangeNotifier {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) => {Get.offAll(() => const HomePage())});
+          .then(
+              (value) => {Get.offAll(() => HomePage(user: auth.currentUser!))});
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
   }
 
-  static Future<User?> signInWithGoogle({required BuildContext context}) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
+  static Future<User?> signInWithGoogle() async {
     User? user;
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
-    if (googleSignInAccount != null) {
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+    if (gUser != null) {
+      final GoogleSignInAuthentication gAuth = await gUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
+        accessToken: gAuth.accessToken,
+        idToken: gAuth.idToken,
       );
 
       try {
         final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
+            await FirebaseAuth.instance.signInWithCredential(credential);
 
         user = userCredential.user;
       } on FirebaseAuthException catch (e) {
@@ -141,8 +139,9 @@ class AuthService extends ChangeNotifier {
     return smsCode;
   }
 
-  static Future<void> signOut({required BuildContext context}) async {
+  static Future<void> signOut() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance
           .signOut()
           .then((value) => {Get.offAll(() => const LoginPge())});
