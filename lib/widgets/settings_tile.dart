@@ -35,7 +35,7 @@ class SettingsTitle extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .labelLarge!
-            .copyWith(fontSize: 18, fontWeight: FontWeight.w300),
+            .copyWith(fontWeight: FontWeight.w300),
       ),
     );
   }
