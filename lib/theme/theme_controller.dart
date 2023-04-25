@@ -43,7 +43,7 @@ class ThemeController extends ChangeNotifier {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: Colors.black,
+        systemNavigationBarColor: Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.light,
       ));
     } else if (themeTextString == "light") {
@@ -51,7 +51,7 @@ class ThemeController extends ChangeNotifier {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Color(0xFFFFFFFF),
+        systemNavigationBarColor: Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.dark,
       ));
     } else {
@@ -59,18 +59,9 @@ class ThemeController extends ChangeNotifier {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: Colors.black,
+        systemNavigationBarColor: Colors.transparent,
         systemNavigationBarIconBrightness: Brightness.light,
       ));
     }
-  }
-
-  late bool _darkTheme = false;
-
-  bool get darkTheme => _darkTheme;
-
-  set darkTheme(bool val) {
-    _darkTheme = val;
-    notifyListeners();
   }
 }
