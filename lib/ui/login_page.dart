@@ -1,19 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:supro_vigilant/services/auth_service.dart';
 import 'package:supro_vigilant/ui/home_page.dart';
 
 import '../utils/loading_util.dart';
 
-class LoginPge extends StatefulWidget {
-  const LoginPge({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPge> createState() => _LoginPgeState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPgeState extends State<LoginPge> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +50,7 @@ class _LoginPgeState extends State<LoginPge> {
               ),
             ),
             FutureBuilder(
-                future: AuthService.initializeFirebase(),
+                future: AuthService().initializeFirebase(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Text(
@@ -97,12 +98,21 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 setState(() {
                   _isSigningIn = true;
                 });
-                User? user = await AuthService.signInWithGoogle();
+                User? user = await AuthService().signInWithGoogle();
                 setState(() {
                   _isSigningIn = false;
                 });
                 if (user != null) {
-                  Get.offAll(() => HomePage(user: user));
+                  Get.snackbar(
+                    'Congratulation ${user.displayName!}',
+                    'Account creation was successful',
+                    icon: const Icon(
+                      FontAwesomeIcons.circleCheck,
+                      color: Colors.tealAccent,
+                    ),
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                  Get.offAll(() => const HomePage());
                 }
               },
               child: Padding(
