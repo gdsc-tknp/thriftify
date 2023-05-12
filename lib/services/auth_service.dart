@@ -1,21 +1,45 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supro_vigilant/ui/home_page.dart';
 
 import '../firebase_options.dart';
 import '../ui/login_page.dart';
 
 class AuthService extends ChangeNotifier {
-  static Future<FirebaseApp> initializeFirebase() async {
+  late bool _isSignIn = false;
+  late bool _isFirstUser = false;
+  late User? _user = FirebaseAuth.instance.currentUser;
+
+  AuthService() {
+    startLogic();
+  }
+
+  User? get user => _user;
+
+  bool get isSignIn => _isSignIn;
+
+  bool get isFirstUser => _isFirstUser;
+
+  void startLogic() async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    _isSignIn = sp.getBool('isSignIn') ?? false;
+    _isFirstUser = sp.getBool('is_first_user') ?? false;
+    notifyListeners();
+  }
+
+  Future<FirebaseApp> initializeFirebase() async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
     FirebaseApp firebaseApp = await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      Get.offAll(() => HomePage(user: user));
+    if (_user != null) {
+      sp.setBool('is_first_user', true);
+      Get.offAll(() => const HomePage());
     }
     return firebaseApp;
   }
@@ -25,8 +49,7 @@ class AuthService extends ChangeNotifier {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then(
-              (value) => {Get.offAll(() => HomePage(user: auth.currentUser!))});
+          .then((value) => {Get.offAll(() => const HomePage())});
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
@@ -37,15 +60,13 @@ class AuthService extends ChangeNotifier {
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then(
-              (value) => {Get.offAll(() => HomePage(user: auth.currentUser!))});
+          .then((value) => {Get.offAll(() => const HomePage())});
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
   }
 
-  static Future<User?> signInWithGoogle() async {
-    User? user;
+  Future<User?> signInWithGoogle() async {
     final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
     if (gUser != null) {
       final GoogleSignInAuthentication gAuth = await gUser.authentication;
@@ -58,7 +79,7 @@ class AuthService extends ChangeNotifier {
         final UserCredential userCredential =
             await FirebaseAuth.instance.signInWithCredential(credential);
 
-        user = userCredential.user;
+        _user = userCredential.user;
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           Get.snackbar('Error',
@@ -72,7 +93,7 @@ class AuthService extends ChangeNotifier {
             'Error', 'Error occurred using Google Sign-In. Try again.');
       }
     }
-    return user;
+    return _user;
   }
 
   static Future phoneVerify({required BuildContext context}) async {
@@ -142,11 +163,23 @@ class AuthService extends ChangeNotifier {
   static Future<void> signOut() async {
     try {
       await GoogleSignIn().signOut();
-      await FirebaseAuth.instance
-          .signOut()
-          .then((value) => {Get.offAll(() => const LoginPge())});
+      await FirebaseAuth.instance.signOut().then((value) => {
+            Get.snackbar(
+              'Success',
+              'Signing out',
+              icon: const Icon(
+                FontAwesomeIcons.circleCheck,
+                color: Colors.tealAccent,
+              ),
+            ),
+            Get.offAll(() => const LoginPage())
+          });
     } catch (e) {
-      Get.snackbar('Error', 'Error signing out. Try again.');
+      Get.snackbar(
+        'Error',
+        'Error signing out. Try again later.',
+        icon: const Icon(FontAwesomeIcons.exclamation, color: Colors.redAccent),
+      );
     }
   }
 }

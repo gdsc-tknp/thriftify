@@ -23,7 +23,7 @@ dependencies:
   lottie:
   intl:
   image_picker:
-  cached_network_image:
+  cached_network_image: ^3.2.3
   path:
   popover:
   get:
@@ -34,11 +34,16 @@ dependencies:
   google_sign_in:
   multi_image_picker_view: ^0.0.15
   path_provider: ^2.0.14
-  images_picker:
+  image_cropper:
+  url_launcher: ^6.1.10
+  json_annotation:
+    #  flutter_image_compress: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  build_runner:
+  json_serializable:
 flutter:
   uses-material-design: true
   assets:

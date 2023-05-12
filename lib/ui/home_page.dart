@@ -1,23 +1,21 @@
-import 'dart:async';
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:popover/popover.dart';
+import 'package:provider/provider.dart';
 import 'package:supro_vigilant/ui/donation_page.dart';
 import 'package:supro_vigilant/ui/recycle_page.dart';
 import 'package:supro_vigilant/ui/resale_page.dart';
 import 'package:supro_vigilant/ui/setting_page.dart';
 
+import '../services/auth_service.dart';
+import '../services/storage_service.dart';
+import '../theme/theme.dart';
+import '../widgets/pop_widgets.dart';
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required User user})
-      : _user = user,
-        super(key: key);
-  final User _user;
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,19 +23,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String? pickImage;
-  late User _user;
 
   @override
   void initState() {
-    _user = widget._user;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final logic = context.watch<AuthService>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Supro Vigilante'),
+        title: const Text('Supro Vigilant'),
         automaticallyImplyLeading: false,
         actions: [
           RoundCustomBtn(
@@ -70,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 text: 'Settings',
                 onTap: () {
                   Get.back();
-                  Get.to(() => SettingsPage(user: _user));
+                  Get.to(() => const SettingsPage());
                 },
                 icon: FontAwesomeIcons.gear,
               ),
@@ -79,23 +76,20 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8.0,
-          vertical: 8.0,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
         children: [
           Image.asset('assets/images/logo.png', height: 160),
           Column(
             children: [
               Text(
-                _user.displayName!,
+                logic.user!.displayName!,
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.8),
               ),
               Text(
-                _user.email!,
+                logic.user!.email!,
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
@@ -104,20 +98,70 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           const SizedBox(height: 25),
-          TextButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).primaryColor.withOpacity(.5),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-            ),
-            onPressed: () async {
-              XFile? imageData = await picImage();
-              if (imageData != null && imageData.path.isNotEmpty) {
-                pickImage = await upload(imageData);
-                setState(() {});
-              }
+          CupertinoButton(
+            color: Colors.teal.withOpacity(.5),
+            borderRadius: BorderRadius.circular(8),
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            onPressed: () {
+              Get.bottomSheet(
+                Container(
+                  height: 130,
+                  decoration: BoxDecoration(
+                    color: Get.theme.brightness == Brightness.dark
+                        ? d0
+                        : Colors.white,
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(5),
+                      topLeft: Radius.circular(5),
+                    ),
+                  ),
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      TextButton(
+                        onPressed: () async {
+                          Get.back();
+                          XFile? imageData = await StorageService()
+                              .picImage(ImageSource.gallery);
+                          if (imageData != null && imageData.path.isNotEmpty) {
+                            pickImage =
+                                await StorageService().upload(imageData);
+                            setState(() {});
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text('Gallery'),
+                            FaIcon(FontAwesomeIcons.rectangleList),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextButton(
+                        onPressed: () async {
+                          Get.back();
+                          XFile? imageData = await StorageService()
+                              .picImage(ImageSource.camera);
+                          if (imageData != null && imageData.path.isNotEmpty) {
+                            pickImage =
+                                await StorageService().upload(imageData);
+                            setState(() {});
+                          }
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text('Camera'),
+                            FaIcon(FontAwesomeIcons.camera),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -131,20 +175,16 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 25),
           Container(
             decoration: BoxDecoration(
-              color: const Color(0xFFFAFAFC).withOpacity(.5),
-              border:
-                  Border.all(color: const Color(0xFFBAFAFC).withOpacity(.5)),
+              color:
+                  Get.theme.brightness == Brightness.dark ? d0 : Colors.white,
+              border: Border.all(color: t1.withOpacity(.5)),
               borderRadius: BorderRadius.circular(10),
             ),
             height: 250,
             child: Column(
               children: [
                 pickImage != null && pickImage!.isNotEmpty
-                    ? Image.network(
-                        pickImage!,
-                        height: 50,
-                        width: 50,
-                      )
+                    ? Image.network(pickImage!, height: 50, width: 50)
                     : const Center(child: Text('No Data'))
               ],
             ),
@@ -153,85 +193,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
-
-class RoundCustomBtn extends StatelessWidget {
-  final List<Widget>? children;
-  final IconData? icon;
-
-  const RoundCustomBtn({Key? key, this.icon, this.children}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        showPopover(
-            width: 180,
-            height: 260,
-            context: context,
-            bodyBuilder: (context) => ListItems(children: children));
-      },
-      splashRadius: 1,
-      icon: const FaIcon(FontAwesomeIcons.ellipsis),
-    );
-  }
-}
-
-class ListItems extends StatelessWidget {
-  const ListItems({Key? key, this.children}) : super(key: key);
-  final List<Widget>? children;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: ListView(
-        padding: const EdgeInsets.all(8),
-        children: children!,
-      ),
-    );
-  }
-}
-
-class MItems extends StatelessWidget {
-  final VoidCallback? onTap;
-  final IconData? icon;
-  final String? text;
-
-  const MItems({Key? key, this.text, this.onTap, this.icon}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: onTap,
-      child: Container(
-        alignment: AlignmentDirectional.centerStart,
-        constraints: BoxConstraints(minHeight: height / 12),
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          children: [
-            FaIcon(icon, color: Theme.of(context).primaryColor),
-            const SizedBox(width: 5),
-            Text(text!)
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-Future<XFile?> picImage() async {
-  return ImagePicker().pickImage(source: ImageSource.gallery);
-}
-
-Future<String> upload(XFile image) async {
-  Reference ref = FirebaseStorage.instance.ref('images${imagePathName(image)}');
-  await ref.putFile(File(image.path));
-  return await ref.getDownloadURL();
-}
-
-String imagePathName(XFile image) {
-  return image.path.split('/').last;
 }
