@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
             Image.asset('assets/images/logo.png', height: 160),
           Center(
             child: Text(
-              'Supro Vigilant',
+              'Thriftify',
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -49,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           Center(
             child: Text(
-              'Version 0.0.1.beta',
+              'Version 1.0',
               style: Theme.of(context)
                   .textTheme
                   .labelLarge!

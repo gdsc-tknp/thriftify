@@ -89,7 +89,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 const Divider(),
                 SettingsTile(
-                  title: 'About SV',
+                  title: 'About Thriftify',
                   iconL: FontAwesomeIcons.fileCircleCheck,
                   icon: FontAwesomeIcons.angleRight,
                   onTap: () => Get.to(() => const AboutPage()),
@@ -129,14 +129,14 @@ class _SettingsPageState extends State<SettingsPage> {
             children: [
               Image.asset('assets/images/logo0.png', scale: 30),
               Text(
-                'Supro Vigilant',
+                'Thriftify',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                    fontSize: 18,
+                    fontSize: 18,color: r6.withOpacity(.8),
                     fontWeight: FontWeight.w400,
                     letterSpacing: 1.8),
               ),
               Text(
-                'Version 0.0.1.beta',
+                'Version 1.0',
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!

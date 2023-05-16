@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gdsctknp.supro_vigilant">
+    package="com.gdsctknp.thriftify">
    <application
-        android:label="Supro Vigilant"
+        android:label="Thriftify"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

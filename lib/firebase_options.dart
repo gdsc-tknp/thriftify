@@ -44,40 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAZ4Fq-GTc59Du_kIZdAePbURSN2Wjkhqk',
-    appId: '1:1046716731026:web:cfe9c4ff2fabb255b1604b',
-    messagingSenderId: '1046716731026',
-    projectId: 'supro-vigilant',
-    authDomain: 'supro-vigilant.firebaseapp.com',
-    storageBucket: 'supro-vigilant.appspot.com',
-    measurementId: 'G-LZNFPDDEY1',
+    apiKey: 'AIzaSyDMAWP5heH6spuMqY5dV1duNiCDSJfxfEc',
+    appId: '1:374913205578:web:5d54f5f19666a8bc07adb3',
+    messagingSenderId: '374913205578',
+    projectId: 'thriftify-app',
+    authDomain: 'thriftify-app.firebaseapp.com',
+    storageBucket: 'thriftify-app.appspot.com',
+    measurementId: 'G-K765N7WQ7E',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDGt29en4Lsr9qDX-HlNWt5NQG-6Ekwujg',
-    appId: '1:1046716731026:android:c537f4e3f8bca775b1604b',
-    messagingSenderId: '1046716731026',
-    projectId: 'supro-vigilant',
-    storageBucket: 'supro-vigilant.appspot.com',
+    apiKey: 'AIzaSyAyN_2y6DvuxetvQoUCobr6kT7AbWXGgTM',
+    appId: '1:374913205578:android:bbd934a7c196f6d707adb3',
+    messagingSenderId: '374913205578',
+    projectId: 'thriftify-app',
+    storageBucket: 'thriftify-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDWNz0GfHPmV27w_wY14kR7nPjWsUv3WEw',
-    appId: '1:1046716731026:ios:cb2549be91b501e8b1604b',
-    messagingSenderId: '1046716731026',
-    projectId: 'supro-vigilant',
-    storageBucket: 'supro-vigilant.appspot.com',
-    iosClientId: '1046716731026-5qdaglpsh5bq32sfihh2ncur3ql84crj.apps.googleusercontent.com',
+    apiKey: 'AIzaSyD3IRGZWacLGJ8V2Wq1HX2weCqBlbK2vGA',
+    appId: '1:374913205578:ios:eeba79ab11d9703607adb3',
+    messagingSenderId: '374913205578',
+    projectId: 'thriftify-app',
+    storageBucket: 'thriftify-app.appspot.com',
+    iosClientId: '374913205578-astqtlgludpg3ogv8b7gpd0gc8dlp8ij.apps.googleusercontent.com',
     iosBundleId: 'com.gdsctknp.suproVigilant',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDWNz0GfHPmV27w_wY14kR7nPjWsUv3WEw',
-    appId: '1:1046716731026:ios:cb2549be91b501e8b1604b',
-    messagingSenderId: '1046716731026',
-    projectId: 'supro-vigilant',
-    storageBucket: 'supro-vigilant.appspot.com',
-    iosClientId: '1046716731026-5qdaglpsh5bq32sfihh2ncur3ql84crj.apps.googleusercontent.com',
+    apiKey: 'AIzaSyD3IRGZWacLGJ8V2Wq1HX2weCqBlbK2vGA',
+    appId: '1:374913205578:ios:eeba79ab11d9703607adb3',
+    messagingSenderId: '374913205578',
+    projectId: 'thriftify-app',
+    storageBucket: 'thriftify-app.appspot.com',
+    iosClientId: '374913205578-astqtlgludpg3ogv8b7gpd0gc8dlp8ij.apps.googleusercontent.com',
     iosBundleId: 'com.gdsctknp.suproVigilant',
   );
 }

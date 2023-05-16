@@ -8,14 +8,14 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About Supro Vigilant')),
+      appBar: AppBar(title: const Text('About Thriftify')),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8.0),
         children: [
           Image.asset('assets/images/logo.png', height: 160),
           Center(
             child: Text(
-              'Supro Vigilant',
+              'Thriftify',
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -24,7 +24,7 @@ class AboutPage extends StatelessWidget {
           ),
           Center(
             child: Text(
-              'Version 0.0.1.beta',
+              'Version 1.0',
               style: Theme.of(context)
                   .textTheme
                   .labelLarge!
@@ -38,7 +38,7 @@ class AboutPage extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  'Supro Vigilant is an app that is capable of promoting transition of a circular economy where waste is minimized and resources are used in a sustainable way.',
+                  'Thriftify is an app that is capable of promoting transition of a circular economy where waste is minimized and resources are used in a sustainable way.',
                 ),
               ),
             ),

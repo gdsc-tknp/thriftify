@@ -10,6 +10,7 @@ const r2 = Color(0xffdde7c7);
 const r3 = Color(0xffbfd8bd);
 const r4 = Color(0xff98c9a3);
 const r5 = Color(0xff77bfa3);
+const r6 = Color(0xff5CD1D7);
 const t0 = Color(0xFFFBFBFB);
 const td0 = Color(0xFF17262A);
 const td1 = Color(0xFF3D3D3D);
@@ -27,7 +28,8 @@ ThemeData get theme {
     cardTheme: base.cardTheme.copyWith(
       // clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-    ),
+    ),cupertinoOverrideTheme: base.cupertinoOverrideTheme?.copyWith(),
+    navigationBarTheme: base.navigationBarTheme.copyWith(height: 80),
     appBarTheme: base.appBarTheme.copyWith(
       // elevation: 1,
       scrolledUnderElevation: 0,
@@ -41,7 +43,7 @@ ThemeData get theme {
     textTheme: _buildTextTheme(base.textTheme, td1, td1),
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: Colors.teal,
-      accentColor: r5,
+      accentColor: r6,
     ).copyWith(background: r3),
   );
 }
@@ -62,6 +64,7 @@ ThemeData get themed {
       color: d0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
+    navigationBarTheme: base.navigationBarTheme.copyWith(),
     appBarTheme: base.appBarTheme.copyWith(
       // elevation: 1,
       scrolledUnderElevation: 0,
@@ -78,7 +81,7 @@ ThemeData get themed {
     iconTheme: base.iconTheme.copyWith(color: r0),
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: Colors.teal,
-      accentColor: r5,
+      accentColor: r6,
     ).copyWith(secondary: d0, background: d1),
   );
 }

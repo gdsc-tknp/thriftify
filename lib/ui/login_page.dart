@@ -32,14 +32,14 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset('assets/images/logo.png', height: 160),
                   ),
                   Text(
-                    'Supro Vigilant',
+                    'Thriftify',
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 1.8),
                   ),
                   Text(
-                    'Version 0.0.1.beta',
+                    'Version 1.0',
                     style: Theme.of(context)
                         .textTheme
                         .labelLarge!

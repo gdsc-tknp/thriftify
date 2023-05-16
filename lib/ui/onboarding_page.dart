@@ -29,14 +29,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               title: Text('Find Recycler',
                   style: TextStyle(fontFamily: 'Poppins')),
               description: Text(
-                  'SV suggests efficiency recycling dealers, based on different products on you data',
+                  'Thriftify suggests efficiency recycling dealers, based on different products on you data',
                   style: TextStyle(fontFamily: 'Poppins')),
             ),
             WhatsNewFeature(
               icon: Icon(Icons.recycling),
               title: Text('Time to Recycle'),
               description: Text(
-                "SV uses data provide to suggest dor you a suitable way to recycle your products, it aso provides with notification on proper consumption.",
+                "Thriftify uses data provide to suggest dor you a suitable way to recycle your products, it aso provides with notification on proper consumption.",
               ),
             ),
           ],
@@ -49,7 +49,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               title: Text('Find Donation Center',
                   style: TextStyle(fontFamily: 'Poppins')),
               description: Text(
-                  'SV suggests efficiency  consumption products, Messages, and Safari, so you can add them easily, such as flight reservations and hotel bookings.',
+                  'Thriftify suggests efficiency  consumption products, Messages, and Safari, so you can add them easily, such as flight reservations and hotel bookings.',
                   style: TextStyle(fontFamily: 'Poppins')),
             ),
             const WhatsNewFeature(
@@ -57,7 +57,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               title: Text('Time to Donate',
                   style: TextStyle(fontFamily: 'Poppins')),
               description: Text(
-                  "SV uses Apple Maps to look up consumable, traffic conditions, and reliable options to tell you when it's time to recycle.",
+                  "Thriftify uses Apple Maps to look up consumable, traffic conditions, and reliable options to tell you when it's time to recycle.",
                   style: TextStyle(fontFamily: 'Poppins')),
             ),
             Lottie.asset('assets/lottie/donate.json')
@@ -71,7 +71,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               title:
                   Text('Find Market', style: TextStyle(fontFamily: 'Poppins')),
               description: Text(
-                  'SV suggests efficiency  consumption products, Messages, and Safari, so you can add them easily, such as flight reservations and hotel bookings.',
+                  'Thriftify suggests efficiency  consumption products, Messages, and Safari, so you can add them easily, such as flight reservations and hotel bookings.',
                   style: TextStyle(fontFamily: 'Poppins')),
             ),
             WhatsNewFeature(
@@ -79,7 +79,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               title: Text('Time to Resale',
                   style: TextStyle(fontFamily: 'Poppins')),
               description: Text(
-                  "SV uses Apple Maps to look up markets, traffic conditions, and reliable options to tell you when it's time to recycle.",
+                  "Thriftify uses Apple Maps to look up markets, traffic conditions, and reliable options to tell you when it's time to recycle.",
                   style: TextStyle(fontFamily: 'Poppins')),
             ),
           ],

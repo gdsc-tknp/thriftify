@@ -1,37 +1,37 @@
 {
   "project_info": {
-    "project_number": "1046716731026",
-    "project_id": "supro-vigilant",
-    "storage_bucket": "supro-vigilant.appspot.com"
+    "project_number": "374913205578",
+    "project_id": "thriftify-app",
+    "storage_bucket": "thriftify-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1046716731026:android:c537f4e3f8bca775b1604b",
+        "mobilesdk_app_id": "1:374913205578:android:bbd934a7c196f6d707adb3",
         "android_client_info": {
-          "package_name": "com.gdsctknp.supro_vigilant"
+          "package_name": "com.gdsctknp.thriftify"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1046716731026-q41itrerksp20bbfk4ro5177u24i5k5e.apps.googleusercontent.com",
+          "client_id": "374913205578-u29cmaikfu1rvaa8vm2e32csrjrqddhe.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDGt29en4Lsr9qDX-HlNWt5NQG-6Ekwujg"
+          "current_key": "AIzaSyAyN_2y6DvuxetvQoUCobr6kT7AbWXGgTM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1046716731026-oek96vd2b671b380fd00oodibq14stea.apps.googleusercontent.com",
+              "client_id": "374913205578-u29cmaikfu1rvaa8vm2e32csrjrqddhe.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "1046716731026-5qdaglpsh5bq32sfihh2ncur3ql84crj.apps.googleusercontent.com",
+              "client_id": "374913205578-astqtlgludpg3ogv8b7gpd0gc8dlp8ij.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.gdsctknp.suproVigilant"
