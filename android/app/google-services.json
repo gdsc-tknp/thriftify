@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "374913205578-u29cmaikfu1rvaa8vm2e32csrjrqddhe.apps.googleusercontent.com",
+          "client_id": "374913205578-0st9mtv64nplvbso3d8k1bd253bktits.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdsctknp.thriftify",
+            "certificate_hash": "d584ecbbd422e4a105a9de6f7102f73eb4a2a578"
+          }
+        },
+        {
+          "client_id": "374913205578-a6d1qoa7ajbg0umnt7e2thnn9mn2cvgg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "374913205578-u29cmaikfu1rvaa8vm2e32csrjrqddhe.apps.googleusercontent.com",
+              "client_id": "374913205578-a6d1qoa7ajbg0umnt7e2thnn9mn2cvgg.apps.googleusercontent.com",
               "client_type": 3
             },
             {
