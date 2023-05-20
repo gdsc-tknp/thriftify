@@ -160,7 +160,7 @@ class AuthService extends ChangeNotifier {
     return smsCode;
   }
 
-  static Future<void> signOut() async {
+  Future<void> signOut() async {
     try {
       await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut().then((value) => {
