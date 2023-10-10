@@ -1,4 +1,4 @@
-name: supro_vigilant
+name: thriftify
 description: Resource-efficient for production and consumption.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -37,6 +37,10 @@ dependencies:
   image_cropper:
   url_launcher: ^6.1.10
   json_annotation:
+  youtube_player_flutter: ^8.1.2
+  uuid:
+  rxdart:
+
 #  flutter_image_compress:
 dev_dependencies:
   flutter_test:
